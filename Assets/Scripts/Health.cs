@@ -5,15 +5,11 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-       
-    
-    //Properties
+
+    #region Public Properties
     public float CurrentHealth
     {
-        get
-        {
-            return _currentHealth;
-        }
+        get => _currentHealth;
         set
         {
             _currentHealth = value;
@@ -22,60 +18,71 @@ public class Health : MonoBehaviour
             {
                 _currentHealth = 0;
                 Die();
-            } 
-            
-            if (value > _maxHealth) _currentHealth = _maxHealth;
-
+            }
+            if (value > _maxHealth)
+                _currentHealth = _maxHealth;
         }
     }
 
-    //Events
-    public event Action OnGetDamage;
-    public event Action OnGetHeal;
-    public event Action OnDie;
+    #endregion
 
-    //Fields
+    #region Private Fields
     [SerializeField] private float _maxHealth = 100f;
     [SerializeField] private float _currentHealth;
     [SerializeField] private bool _die;
 
-    //Unity Callbakcs
+    #endregion
+
+    #region Events
+    public event Action OnGetDamage;
+    public event Action OnGetHeal;
+    public event Action OnDie;
+
+    #endregion
+
+    #region Unity Callbacks
     private void Start()
     {
         CurrentHealth = _maxHealth;
         _die = false;
     }
 
-    private void Update()
-    {
-        if ((Input.GetKeyUp(KeyCode.D))) GetDamage(20);
-        if ((Input.GetKeyUp(KeyCode.H))) GetHeal(40);
+    #endregion
 
-    }
-
-    //Public methods
+    #region Public Methods
     public void GetDamage(float damage)
     {
-        CurrentHealth -= damage;
-        OnGetDamage?.Invoke();
+        if (!_die)
+        { 
+            CurrentHealth -= damage;
+            Debug.Log(CurrentHealth);
+            OnGetDamage?.Invoke();
+        }
     }
 
     public void GetHeal(float life)
     {
-        CurrentHealth += life;
-        OnGetHeal?.Invoke();
+        if (!_die) 
+        {
+            CurrentHealth += life;
+            OnGetHeal?.Invoke();
+        }
     }
 
-    //Private Methods
-    private void Die()
+    #endregion
+
+    #region Private Methods
+    public void Die()
     {
         if (!_die) 
-        { 
+        {
             _die = true;
             OnDie?.Invoke();
         }
     }
 
- 
+    #endregion
+
+
 
 }
