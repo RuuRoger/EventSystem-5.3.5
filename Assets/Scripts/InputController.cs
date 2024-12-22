@@ -53,7 +53,7 @@ public class InputController : MonoBehaviour
 
     public void KeyLevel()
     {
-        if (Input.GetKey(KeyCode.L))
+        if (Input.GetKeyUp(KeyCode.L))
             OnKeyLevel?.Invoke();
     }
 

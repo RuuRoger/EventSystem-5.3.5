@@ -6,12 +6,14 @@ using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
 {
-    //Fields
+    #region Private Fields
     [SerializeField] private Slider _slider;
     [SerializeField] private TextMeshProUGUI _pointsText;
     [SerializeField] private TextMeshProUGUI _levelsText;
 
-    //Public methods
+    #endregion
+
+    #region Public Methods
     public void SliderLife(float currentLife)
         => _slider.value = currentLife;
 
@@ -20,4 +22,6 @@ public class UIController : MonoBehaviour
 
     public void AddLevels(int currentLevels)
         => _levelsText.text = currentLevels.ToString();
+
+    #endregion
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class EventSystem : MonoBehaviour
 {
-    //Fields
+    #region Private Fields
     [SerializeField] private Points _points;
     [SerializeField] private Points _level;
     [SerializeField] private Health _playerHealth;
@@ -14,24 +14,21 @@ public class EventSystem : MonoBehaviour
     [SerializeField] private SoundController _sound;
     [SerializeField] private InputController _input;
 
+    #endregion
+
+    #region Unity Callbacks
     //Unity Callbacks
     private void Start()
     {
-        //Event Listeners
-        //_playerHealth.OnGetDamage += OnGetDamage;
-        //_playerHealth.OnGetHeal += OnGetHeal;
-        //_playerHealth.OnDie += GetOnDie;
-        //_points.OnGetPoints += OnAddPoints;
-
         //Events Inputs
         _input.OnKeyDamage += OnGetDamage; ;
         _input.OnKeyHeal += OnGetHeal;
         _input.OnKeyDie += GetOnDie;
         _input.OnKeyPoints += OnAddPoints;
-        
-
-
+        _input.OnKeyLevel += OnAddLevel;
     }
+
+    #endregion
 
     #region Public Methods of Event Listeners
     private void OnGetDamage()

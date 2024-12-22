@@ -1,0 +1,5 @@
+Daño: Pulsar la tecla d
+Curar: Pulsar la tecla h
+Morir: Pulsar la tecla i
+Agregar puntos: Pulsar la tecla p
+Subir nivel: Pulsar la tecla l

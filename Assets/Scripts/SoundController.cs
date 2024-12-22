@@ -6,18 +6,20 @@ using UnityEngine;
 
 public class SoundController : MonoBehaviour
 {
-    //Fields
+    #region Private Fields
     [SerializeField] private AudioClip _damageSound;
     [SerializeField] private AudioClip _dieSound;
     private AudioSource _audiSource;
 
-    //Unity Callbacks
-    private void Awake()
-    {
-        _audiSource = GetComponent<AudioSource>();
-    }
+    #endregion
 
-    //Public methods
+    #region Unity Callbacks
+    private void Awake()
+        =>_audiSource = GetComponent<AudioSource>();
+
+    #endregion
+
+    #region Public Methods
     public void PlayDamageSound()
     {
         _audiSource.clip = _damageSound;
@@ -29,4 +31,6 @@ public class SoundController : MonoBehaviour
         _audiSource.clip = _dieSound;
         _audiSource.Play();
     }
+
+    #endregion
 }

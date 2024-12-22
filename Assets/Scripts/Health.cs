@@ -5,6 +5,12 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
+    #region Private Fields
+    [SerializeField] private float _maxHealth = 100f;
+    [SerializeField] private float _currentHealth;
+    [SerializeField] private bool _die;
+
+    #endregion
 
     #region Public Properties
     public float CurrentHealth
@@ -23,13 +29,6 @@ public class Health : MonoBehaviour
                 _currentHealth = _maxHealth;
         }
     }
-
-    #endregion
-
-    #region Private Fields
-    [SerializeField] private float _maxHealth = 100f;
-    [SerializeField] private float _currentHealth;
-    [SerializeField] private bool _die;
 
     #endregion
 
@@ -69,9 +68,6 @@ public class Health : MonoBehaviour
         }
     }
 
-    #endregion
-
-    #region Private Methods
     public void Die()
     {
         if (!_die) 

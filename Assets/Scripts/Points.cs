@@ -5,6 +5,13 @@ using UnityEngine;
 
 public class Points : MonoBehaviour
 {
+    #region Private Fields
+    private int _currentPoints;
+    private int _currentLevel;
+
+    #endregion
+
+    #region Public Properties
     public int CurrentPoints
     {
         get => _currentPoints;
@@ -17,18 +24,24 @@ public class Points : MonoBehaviour
         set => _currentLevel = value;
     }
 
-    private int _currentPoints;
-    private int _currentLevel;
+    #endregion
 
+    #region Events
     public event Action OnGetPoints;
     public event Action OnGetLevel;
 
+    #endregion
+
+    #region Unity Callbacks
     private void Start()
     {
         CurrentPoints = 0;
         _currentLevel = 1;
     }
 
+    #endregion
+
+    #region Public Methods
     public void AddPoints(int pointsToAdd)
     {
         CurrentPoints += pointsToAdd;
@@ -42,5 +55,6 @@ public class Points : MonoBehaviour
         OnGetLevel?.Invoke();
     }
 
+    #endregion
 
 }
